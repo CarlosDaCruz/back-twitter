@@ -1,0 +1,1 @@
+export const TOKEN_SECRET = 'contraseña'; //Contraseña para encriptar el token
