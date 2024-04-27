@@ -5,3 +5,5 @@ import { connectDB } from "./db.js";
 connectDB();
 app.listen(port);
 console.log("Corriendo en el puerto: " + port);
+
+module.exports = app;
