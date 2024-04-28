@@ -5,7 +5,7 @@ import { createAccessToken } from "../libs/jwt.js";
 //Este archivo es para el control de los usuarios, como el registro y el login
 
 export const register = async (req, res) => {
-    const { email, username, password} = req.body;
+    const {username, email,  password} = req.body;
 
     try {
 
@@ -30,7 +30,7 @@ export const register = async (req, res) => {
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {
-        // res.console.log(error)
+        console.log(error)
         res.status(500).json({ message: error.message }); //Si hay un error, devuelve un mensaje de error
     }
     
