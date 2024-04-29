@@ -4,6 +4,10 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
+import dotenv from 'dotenv'; // Import dotenv
+
+// Load environment variables
+dotenv.config();
 
 const app = express()
 
