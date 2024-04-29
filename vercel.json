@@ -11,5 +11,10 @@
         "src": "/(.*)",
         "dest": "/"
       }
+    ],
+    "env": [
+      {
+        "MONGODB_URI": "mongodb+srv://cdcpavas:carlos12345678@cluster0.jgzgpb0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      }
     ]
   }

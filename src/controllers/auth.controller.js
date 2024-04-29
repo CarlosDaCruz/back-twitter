@@ -15,6 +15,9 @@ export const register = async (req, res) => {
             email,
             password: passwordHash,
         })
+
+
+        
         //Cada que alguien se registra se genera el token necesario
         const userSaved = await newUser.save(); //Guarda el usuario en la base de datos
 
