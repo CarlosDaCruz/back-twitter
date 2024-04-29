@@ -6,12 +6,14 @@ import {
   createTweet,
   updateTweet,
   deleteTweet,
+  getAllTweets,
 } from "../controllers/tasks.controller.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 import { createTweetSchema } from "../schemas/tweet.schema.js";
 
 const router = Router();
 
+router.get("/tweets/getAll", authRequired, getAllTweets); //Obtener todos los tweets
 router.get("/tweets", authRequired, getTweets); //Obtener tweets
 router.get("/tweets/:id", authRequired, getTweet); //Obtener un tweet
 router.post(

@@ -1,5 +1,11 @@
 import Tweet from '../models/tweet.model.js';
 
+export const getAllTweets = async (req, res) => {
+    const tweets = await Tweet.find().populate('user')
+    res.json(tweets);
+}
+
+
 export const getTweets = async (req, res) => {
     const tweet = await Tweet.find({
         user: req.user.id
