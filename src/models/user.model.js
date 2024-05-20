@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({    //Modo de guardar los usuarios en la base de datos
     username: {
         type: String,
         required: true,
@@ -21,4 +21,4 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);  //Modelo para crear metodos que conecten a la base de datos
