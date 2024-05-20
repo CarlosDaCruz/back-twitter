@@ -61,7 +61,7 @@ export const login = async (req, res) => {
             email: userFound.email,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
-            token: token
+            accessToken: token,
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {
