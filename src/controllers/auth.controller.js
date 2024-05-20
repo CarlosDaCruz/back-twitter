@@ -30,7 +30,7 @@ export const register = async (req, res) => {
             email: userSaved.email,
             createdAt: userSaved.createdAt,
             updatedAt: userSaved.updatedAt,
-            token: token,
+            token: token
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {
@@ -61,6 +61,7 @@ export const login = async (req, res) => {
             email: userFound.email,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
+            token: token
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {

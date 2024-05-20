@@ -14,7 +14,9 @@ const app = express()
 
 export const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+}));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
