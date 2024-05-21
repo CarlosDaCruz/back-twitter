@@ -26,9 +26,7 @@ export const register = async (req, res) => {
         const userSaved = await newUser.save(); //Guarda el usuario en la base de datos
 
         const token = await createAccessToken({id: userSaved._id}) //Crea un token con el ID del usuario
-        res.cookie("token", token, {
-            sameSite: "none",   //Esto es para que funcione en producción
-        })     //Pone en una cookie la respuesta, que es el token
+        res.cookie("token", token)     //Pone en una cookie la respuesta, que es el token
          
         res.json({
             id: userSaved._id,
@@ -59,7 +57,9 @@ export const login = async (req, res) => {
        
         const token = await createAccessToken({id: userFound._id}) //Crea un token con el ID del usuario encontrado
         
-        res.cookie('token', token)     //Pone en una cookie la respuesta, que es el token
+        res.cookie('token', token, {
+            sameSite: "none",   //Esto es para que funcione en producción
+        })     //Pone en una cookie la respuesta, que es el token
         res.json({
                 id: userFound._id,
                 username: userFound.username,
