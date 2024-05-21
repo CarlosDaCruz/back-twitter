@@ -49,10 +49,10 @@ export const login = async (req, res) => {
     try {
 
         const userFound = await User.findOne({ username }); //Busca el usuario en la base de datos
-        if (!userFound) return res.status(400).json("Usuario no encontrado"); //Si no lo encuentra, devuelve un mensaje de error
+        if (!userFound) return res.status(400).json({ message: ["Usuario no encontrado"] }); //Si no lo encuentra, devuelve un mensaje de error
 
         const isright = await bcrypt.compare(password, userFound.password);   //Compara la contraseña encriptada con la contraseña ingresada
-        if (!isright) return res.status(400).json({ message: "Contraseña incorrecta" }); //Si no es correcta, devuelve un mensaje de error
+        if (!isright) return res.status(400).json({ message: ["Contraseña incorrecta"] }); //Si no es correcta, devuelve un mensaje de error
         
        
         const token = await createAccessToken({id: userFound._id}) //Crea un token con el ID del usuario encontrado
