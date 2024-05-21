@@ -59,14 +59,11 @@ export const login = async (req, res) => {
         
         res.cookie('token', token)     //Pone en una cookie la respuesta, que es el token
         res.json({
-            body:{
                 id: userFound._id,
                 username: userFound.username,
                 email: userFound.email,
                 createdAt: userFound.createdAt,
                 updatedAt: userFound.updatedAt,
-                accessToken: token,
-            }
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {
