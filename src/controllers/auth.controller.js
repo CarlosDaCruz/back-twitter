@@ -34,7 +34,6 @@ export const register = async (req, res) => {
             email: userSaved.email,
             createdAt: userSaved.createdAt,
             updatedAt: userSaved.updatedAt,
-            token: token
         });    //Devuelve el usuario guardado en formato JSON al Frontend
     
     } catch (error) {
