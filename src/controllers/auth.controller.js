@@ -93,7 +93,7 @@ export const profile = async (req, res) => {
 };
 
 export const verifyToken = async (req, res) => {
-  const { token } = req.cookies;
+  const token = req.cookies.token;
 
   if (!token) return res.status(401).json({ message: "Unauthorized, No token" }); //Si no hay token, devuelve un mensaje de error
 
