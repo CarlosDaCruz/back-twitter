@@ -95,10 +95,10 @@ export const profile = async (req, res) => {
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
 
-  if (!token) return res.status(401).json({ message: "Unauthorized" }); //Si no hay token, devuelve un mensaje de error
+  if (!token) return res.status(401).json({ message: "Unauthorized, No token" }); //Si no hay token, devuelve un mensaje de error
 
   jwt.verify(token, TOKEN_SECRET, async (err, user) => {
-    if (err) return res.status(401).json({ message: "Unauthorized" }); //Si hay un error, devuelve un mensaje de error
+    if (err) return res.status(401).json({ message: "Unauthorized, Token no valid" }); //Si hay un error, devuelve un mensaje de error
 
     const userFound = await User.findById(user.id);
     if (!userFound)
