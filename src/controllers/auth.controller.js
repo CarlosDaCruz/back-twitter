@@ -51,11 +51,7 @@ export const login = async (req, res) => {
     if (!isright) return res.status(400).json(["Contraseña incorrecta"]); //Si no es correcta, devuelve un mensaje de error
 
     const token = await createAccessToken({ id: userFound._id }); //Crea un token con el ID del usuario encontrado
-    res.cookie("token", token, {
-      sameSite: "Lax",
-      secure: true,
-      httpOnly: true,
-    }); //Pone en una cookie la respuesta, que es el token
+    res.cookie("token", token); //Pone en una cookie la respuesta, que es el token
 
     res.json({
       id: userFound._id,
@@ -94,20 +90,22 @@ export const profile = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
   const token = req.cookies.token;
+  let userFound = null;
 
   if (!token) return res.status(401).json({ message: "Unauthorized, No token" }); //Si no hay token, devuelve un mensaje de error
 
   jwt.verify(token, TOKEN_SECRET, async (err, user) => {
     if (err) return res.status(401).json({ message: "Unauthorized, Token no valid" }); //Si hay un error, devuelve un mensaje de error
 
-    const userFound = await User.findById(user.id);
+    userFound = await User.findById(user.id);
     if (!userFound)
       return res.status(400).json({ message: "Usuario no encontrado" }); //Si no lo encuentra, devuelve un mensaje de error
-  });
-
-  return res.json({
-    id: userFound._id,
-    username: userFound.username,
-    email: userFound.email,
-  });
+    else {
+      return res.json({
+        id: userFound._id,
+        username: userFound.username,
+        email: userFound.email,
+      });
+    }    
+});
 };
