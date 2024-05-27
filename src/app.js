@@ -15,7 +15,7 @@ const app = express()
 export const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'https://front-twitter.vercel.app/',
+    origin: 'https://front-twitter.vercel.app',
     credentials: true,
 }));
 app.use(morgan("dev"));
