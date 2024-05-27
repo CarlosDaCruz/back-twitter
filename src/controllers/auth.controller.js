@@ -25,7 +25,11 @@ export const register = async (req, res) => {
     const userSaved = await newUser.save(); //Guarda el usuario en la base de datos
 
     const token = await createAccessToken({ id: userSaved._id }); //Crea un token con el ID del usuario
-    res.cookie("token", token); //Pone en una cookie la respuesta, que es el token
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'None',
+  }); //Pone en una cookie la respuesta, que es el token
 
     res.json({
       id: userSaved._id,
@@ -51,7 +55,11 @@ export const login = async (req, res) => {
     if (!isright) return res.status(400).json(["Contraseña incorrecta"]); //Si no es correcta, devuelve un mensaje de error
 
     const token = await createAccessToken({ id: userFound._id }); //Crea un token con el ID del usuario encontrado
-    res.cookie("token", token); //Pone en una cookie la respuesta, que es el token
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'None',
+  }); //Pone en una cookie la respuesta, que es el token
 
     res.json({
       id: userFound._id,
